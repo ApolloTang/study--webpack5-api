@@ -2,7 +2,7 @@ const { merge } = require('webpack-merge')
 
 const part_page = require('./webpack-part--page.js')
 const part_loadCss = require('./webpack-part--load-css.js')
-const part_extractCss = require('./webpack-part--extract-css.js')
+
 
 
 const cssloader_postcss = require('./webpack-part--cssloader--postcss/')
@@ -16,9 +16,6 @@ const commonConfig = merge([
 
 
 const productionConfig = merge([
-  part_extractCss({
-    loaders: [cssloader_postcss()]
-  })
 ])
 
 
@@ -39,6 +36,7 @@ const getConfig = (mode, debug=false) => {
       throw new Error(`Trying to use an unknow mode, ${mode}`)
   }
 }
+
 
 module.exports = {
   getConfig

@@ -13,7 +13,6 @@
   "autherEmail": "tang.apollo@gmail.com",
   "devDependencies": {
     "css-loader": "^6.7.1",
-    "mini-css-extract-plugin": "^2.6.1",
     "mini-html-webpack-plugin": "^3.1.3",
     "postcss": "^8.4.16",
     "postcss-loader": "^7.0.1",
