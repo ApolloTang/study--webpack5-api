@@ -21,7 +21,6 @@
     "tailwindcss": "^3.1.8",
     "webpack": "^5.74.0",
     "webpack-merge": "^5.8.0",
-    "webpack-nano": "^1.1.1",
     "webpack-plugin-serve": "^1.6.0"
   }
 }

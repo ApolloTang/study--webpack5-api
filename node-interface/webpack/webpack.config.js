@@ -1,14 +1,11 @@
-const { mode } = require('webpack-nano/argv')
 const { merge } = require('webpack-merge')
 
 const part_page = require('./webpack-part--page.js')
-const part_devServer = require('./webpack-part--dev-server.js')
 const part_loadCss = require('./webpack-part--load-css.js')
 const part_extractCss = require('./webpack-part--extract-css.js')
+const part_devServer = require('./webpack-part--dev-server.js')
+const cssloader_postcss = require('./webpack-part--cssloader--postcss/')
 
-const cssloader_postcss = require('./webpack-part--cssloader--postcss.js')
-
-const DEBUG_PROD = false
 
 const commonConfig = merge([
   {
@@ -19,38 +16,32 @@ const commonConfig = merge([
 
 
 const productionConfig = merge([
-  part_extractCss({
-    loaders: [cssloader_postcss()]
-  })
 ])
 
 
 const developmentConfig = merge([
-  {
-    entry: [ 'webpack-plugin-serve/client' ]
-  },
-  part_devServer(),
+  // part_extractCss({
+  //   loaders: [cssloader_postcss()]
+  // }),
   part_loadCss({
     loaders: [cssloader_postcss()]
-  })
+  }),
+  part_devServer()
 ])
 
 
-const getConfig = (mode) => {
+const getConfig = (mode, debug=false) => {
   switch (mode) {
     case 'production':
-      return merge(commonConfig, productionConfig, {mode: !DEBUG_PROD ? mode : 'none'})
+      return merge(commonConfig, productionConfig, {mode: !debug ? mode : 'none'})
     case 'development':
       return merge(commonConfig, developmentConfig, {mode})
     default:
       throw new Error(`Trying to use an unknow mode, ${mode}`)
   }
-
 }
 
 
-const config = getConfig('development')
-// const config = getConfig('production')
-console.dir(config, {depth: 8})
-
-module.exports = config
+module.exports = {
+  getConfig
+}
