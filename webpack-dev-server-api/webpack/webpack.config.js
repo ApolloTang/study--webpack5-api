@@ -2,10 +2,8 @@ const { merge } = require('webpack-merge')
 
 const part_page = require('./webpack-part--page.js')
 const part_loadCss = require('./webpack-part--load-css.js')
-
-
-
 const cssloader_postcss = require('./webpack-part--cssloader--postcss/')
+
 
 const commonConfig = merge([
   {

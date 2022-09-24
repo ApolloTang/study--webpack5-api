@@ -7,8 +7,8 @@ const webpackConfig = getConfig('development')
 console.dir(webpackConfig, {depth: 8})
 
 const webpackCompiler = CreateWebpackCompiler(webpackConfig);
-
 const devServerOptions = { ...webpackConfig.devServer, open: true };
+
 const server = new WebpackDevServer(devServerOptions, webpackCompiler);
 
 const runServer = async () => {
